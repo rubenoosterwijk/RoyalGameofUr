@@ -27,13 +27,16 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         repository = UrGameRepository(requireContext())
         navController = findNavController()
-        view.findViewById<MaterialButton>(R.id.play).setOnClickListener { view ->
-            val name = namefield.toString()
-            val name2 = namefield2.toString()
+        view.findViewById<MaterialButton>(R.id.play).setOnClickListener {
+            val name = namefield1.text.toString()
+//            println(name)
+//            println("XD")
+            val name2 = namefield2.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
-                repository.insertPlayer(Player(name, 0, 0, 0, 1))
-                repository.insertPlayer(Player(name2, 0, 0, 0, 2))
+
+                repository.insertPlayer(Player(name, 0, 7,0, 0, 1))
+                repository.insertPlayer(Player(name2, 0, 7,0, 0, 2))
             }
             navController.navigate(R.id.action_startFragment_to_urGameFragment)
         }
