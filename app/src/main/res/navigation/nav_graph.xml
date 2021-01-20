@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/urGameFragment"
         android:name="com.example.royalgameofur.ui.UrGameFragment"
-        android:label="fragment_ur_game"
-        tools:layout="@layout/fragment_ur_game" />
+        android:label="fragment_gameboard"
+        tools:layout="@layout/fragment_gameboard" />
 </navigation>

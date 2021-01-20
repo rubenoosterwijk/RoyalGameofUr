@@ -9,8 +9,6 @@
     tools:context=".ui.StartFragment"
     >
 
-
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -24,9 +22,11 @@
         android:id="@+id/welcome_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
         android:text="@string/welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,15 +34,15 @@
         android:id="@+id/play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
-        app:layout_constraintBottom_toBottomOf="@+id/namefield"
+        android:text="@string/play"
+        app:layout_constraintBottom_toBottomOf="@+id/namefield1"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/namefield"
+        android:id="@+id/namefield1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/enter_your_name"
+        android:hint="@string/enter_your_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,7 +50,8 @@
         android:id="@+id/namefield2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/enter_your_name2"
+        android:hint="@string/enter_your_name2"
+        android:paddingEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/play" />
 

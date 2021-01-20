@@ -20,4 +20,7 @@
     <string name="welcome">Welcome to the Royal Game of Ur</string>
     <string name="playername">PlayerName</string>
     <string name="enter_your_name2">Enter name player 2</string>
+    <string name="thrown_score">Thrown score:</string>
+    <string name="roll">Roll</string>
+    <string name="play">Play</string>
 </resources>
