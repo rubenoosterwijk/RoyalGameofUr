@@ -11,25 +11,26 @@ import com.example.royalgameofur.model.Player
 class UrGameRepository(context: Context) {
     private val UrGameDao: UrGameDao
 
-
     init {
         val database = GameDatabase.getDatabase(context)
         UrGameDao =  database!!.UrGameDao()
     }
 
-
     fun getPlayer(id: Int):LiveData<Player>{
         return UrGameDao?.getPlayer(id)
     }
 
-    suspend fun insertBoard() {
-        UrGameDao?.updateBoard()
+    fun getScore(id: Int):Player{
+        return UrGameDao?.getScore(id)
     }
+
+//    suspend fun insertBoard() {
+//        UrGameDao?.updateBoard()
+//    }
 
     suspend fun insertPlayer(Player: Player) {
         UrGameDao?.updatePlayer(Player)
     }
-
 
     suspend fun deletePlayers(){
         UrGameDao?.deletePlayers()

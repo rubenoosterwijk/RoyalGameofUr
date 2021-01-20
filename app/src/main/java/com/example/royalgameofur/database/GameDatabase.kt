@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.*
 import com.example.royalgameofur.converter.Converters
 import com.example.royalgameofur.dao.UrGameDao
-import com.example.royalgameofur.model.Board
+import com.example.royalgameofur.model.Piece
 import com.example.royalgameofur.model.Player
 
-@Database(entities = [Board::class, Player::class], version = 3, exportSchema = false)
+@Database(entities = [Piece::class, Player::class], version = 4, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
 

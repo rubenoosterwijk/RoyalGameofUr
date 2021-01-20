@@ -14,6 +14,9 @@ class Player(
     @ColumnInfo(name = "score")
     var score: Int?,
 
+    @ColumnInfo(name = "piecesleft")
+    var piecesleft: Int?,
+
     @ColumnInfo(name = "dice")
     var dice: Int?,
 
