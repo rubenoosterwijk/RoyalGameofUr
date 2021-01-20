@@ -287,6 +287,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:text="@string/pieces_leftp1"
+        android:textColor="#D32F2F"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/board"
         app:layout_constraintEnd_toStartOf="@+id/btn_roll_p1" />
@@ -295,8 +296,9 @@
         android:id="@+id/scorep1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
+        android:layout_marginEnd="64dp"
         android:text="@string/pieces_leftp1"
+        android:textColor="#388E3C"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/piecesleftp1"
         app:layout_constraintEnd_toStartOf="@+id/piecesleftp1"
@@ -304,26 +306,28 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/piecesleftp2"
+        android:id="@+id/scorep2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
         android:rotationX="180"
         android:rotationY="180"
         android:text="@string/pieces_leftp2"
+        android:textColor="#388E3C"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/scorep2"
-        app:layout_constraintEnd_toStartOf="@+id/scorep2"
-        app:layout_constraintTop_toTopOf="@+id/scorep2" />
+        app:layout_constraintBottom_toBottomOf="@+id/piecesleftp2"
+        app:layout_constraintEnd_toStartOf="@+id/piecesleftp2"
+        app:layout_constraintTop_toTopOf="@+id/piecesleftp2" />
 
     <TextView
-        android:id="@+id/scorep2"
+        android:id="@+id/piecesleftp2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:rotationX="180"
         android:rotationY="180"
         android:text="@string/pieces_leftp2"
+        android:textColor="#D32F2F"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_roll_p2"
         app:layout_constraintTop_toTopOf="@+id/board" />

@@ -40,6 +40,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/namefield1"
+        android:inputType="text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_name"
@@ -48,6 +49,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/namefield2"
+        android:inputType="text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/enter_your_name2"

@@ -12,15 +12,15 @@
     <string name="delete_all">Deleted all the games</string>
     <string name="undo_string">undo</string>
 
-    <string name="pieces_leftp1">2x</string>
-    <string name="pieces_leftp2">2x</string>
+    <string name="pieces_leftp1">2</string>
+    <string name="pieces_leftp2">2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_your_name">Enter name player 1</string>
     <string name="welcome">Welcome to the Royal Game of Ur</string>
     <string name="playername">PlayerName</string>
     <string name="enter_your_name2">Enter name player 2</string>
-    <string name="thrown_score">Thrown score:</string>
+    <string name="thrown_score">Dice:</string>
     <string name="roll">Roll</string>
     <string name="play">Play</string>
 </resources>
