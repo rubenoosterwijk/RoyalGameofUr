@@ -53,7 +53,6 @@ class UrGameFragment : Fragment() {
             player.dice = randomnumber
             repository.insertPlayer(player)
         }
-
     }
 
     private fun clearBoard() {

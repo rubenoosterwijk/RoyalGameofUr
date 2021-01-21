@@ -34,13 +34,11 @@ class StartFragment : Fragment() {
             val name2 = namefield2.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
-
                 repository.insertPlayer(Player(name, 0, 7,0, 0, 1))
                 repository.insertPlayer(Player(name2, 0, 7,0, 0, 2))
             }
             navController.navigate(R.id.action_startFragment_to_urGameFragment)
         }
-
     }
 
     override fun onCreateView(
@@ -50,9 +48,4 @@ class StartFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
-
-
-
-
-
 }
