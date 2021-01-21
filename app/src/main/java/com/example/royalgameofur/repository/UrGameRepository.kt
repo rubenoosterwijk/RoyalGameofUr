@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.royalgameofur.database.GameDatabase
 import com.example.royalgameofur.dao.UrGameDao
+import com.example.royalgameofur.model.Board
+import com.example.royalgameofur.model.Piece
 import com.example.royalgameofur.model.Player
 
 
@@ -13,26 +15,52 @@ class UrGameRepository(context: Context) {
 
     init {
         val database = GameDatabase.getDatabase(context)
-        UrGameDao =  database!!.UrGameDao()
+        UrGameDao = database!!.UrGameDao()
     }
 
-    fun getPlayer(id: Int):LiveData<Player>{
-        return UrGameDao?.getPlayer(id)
-    }
-
-    fun getScore(id: Int):Player{
-        return UrGameDao?.getScore(id)
-    }
-
-//    suspend fun insertBoard() {
-//        UrGameDao?.updateBoard()
-//    }
-
-    suspend fun insertPlayer(Player: Player) {
+    suspend fun updatePlayer(Player: Player) {
         UrGameDao?.updatePlayer(Player)
     }
 
-    suspend fun deletePlayers(){
+    fun getPlayer(id: Int): LiveData<Player> {
+        return UrGameDao?.getPlayer(id)
+    }
+
+    suspend fun getPlayerInfo(id: Int): Player {
+        return UrGameDao?.getPlayerInfo(id)
+    }
+
+    suspend fun deletePlayers() {
         UrGameDao?.deletePlayers()
     }
+
+
+    suspend fun insertPiece(Piece: Piece) {
+        UrGameDao?.updatePiece(Piece)
+    }
+
+    suspend fun getPieces():List<Piece>{
+        return UrGameDao?.getPieces()
+
+    }
+
+    suspend fun insertBoard(Board: Board) {
+        UrGameDao.updateBoard(Board)
+    }
+
+    fun getBoard():Board{
+        return UrGameDao?.getBoard()
+    }
+
+    fun getBoardInfo():List<Board>{
+        return UrGameDao?.getBoardInfo()
+    }
+
+
+
+
+
+
+
 }
+

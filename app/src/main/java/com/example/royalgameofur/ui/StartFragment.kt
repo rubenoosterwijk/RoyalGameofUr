@@ -34,8 +34,8 @@ class StartFragment : Fragment() {
             val name2 = namefield2.text.toString()
 
             CoroutineScope(Dispatchers.IO).launch {
-                repository.insertPlayer(Player(name, 0, 7,0, 0, 1))
-                repository.insertPlayer(Player(name2, 0, 7,0, 0, 2))
+                repository.updatePlayer(Player(name, 0, 7,0, 0, 0,0,0,0,0,0,0,1))
+                repository.updatePlayer(Player(name2, 0, 7,0, 0, 0,0,0,0,0,0,0,2))
             }
             navController.navigate(R.id.action_startFragment_to_urGameFragment)
         }

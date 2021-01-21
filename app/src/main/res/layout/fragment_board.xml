@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.UrGameFragment">
 
     <TextView
         android:id="@+id/diceScorep2"
@@ -89,60 +89,60 @@
         android:layout_height="wrap_content"
         android:stretchColumns="*"
 
+        app:layout_constraintBottom_toBottomOf="@id/board"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/board"
         app:layout_constraintTop_toTopOf="@id/board">
 
 
         <TableRow
-            android:minHeight="95dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:minHeight="95dp">
 
             <ImageView
-                android:id="@+id/p0"
+                android:id="@+id/z13"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p1"
+                android:id="@+id/z14"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p2"
+                android:id="@+id/z15"
                 android:layout_width="48dp"
                 android:layout_height="48dp" />
 
             <ImageView
-                android:id="@+id/p3"
+                android:id="@+id/z0"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_black" />
 
             <ImageView
-                android:id="@+id/p4"
+                android:id="@+id/z1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p5"
+                android:id="@+id/z2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p6"
+                android:id="@+id/z3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p7"
+                android:id="@+id/z4"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
@@ -150,24 +150,12 @@
         </TableRow>
 
         <TableRow
-            android:minHeight="94dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:minHeight="94dp">
 
             <ImageView
-                android:id="@+id/p8"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:srcCompat="@drawable/button_red" />
-
-            <ImageView
-                android:id="@+id/p9"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:srcCompat="@drawable/button_red" />
-
-            <ImageView
-                android:id="@+id/p10"
+                android:id="@+id/p12"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
@@ -179,25 +167,37 @@
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p12"
+                android:id="@+id/p10"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p13"
+                android:id="@+id/p9"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p14"
+                android:id="@+id/p8"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p15"
+                android:id="@+id/p7"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/button_red" />
+
+            <ImageView
+                android:id="@+id/p6"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/button_red" />
+
+            <ImageView
+                android:id="@+id/p5"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
@@ -207,52 +207,51 @@
         <TableRow
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/p16"
+                android:id="@+id/r13"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p17"
+                android:id="@+id/r14"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p18"
+                android:id="@+id/r15"
                 android:layout_width="48dp"
                 android:layout_height="48dp" />
 
             <ImageView
-                android:id="@+id/p19"
+                android:id="@+id/r0"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p20"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:srcCompat="@drawable/button_red"
-                />
-
-            <ImageView
-                android:id="@+id/p21"
+                android:id="@+id/r1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p22"
+                android:id="@+id/r2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
 
             <ImageView
-                android:id="@+id/p23"
+                android:id="@+id/r3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/button_red" />
+
+            <ImageView
+                android:id="@+id/r4"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 app:srcCompat="@drawable/button_red" />
