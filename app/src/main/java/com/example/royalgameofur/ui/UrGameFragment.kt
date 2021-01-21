@@ -29,9 +29,6 @@ class UrGameFragment : Fragment() {
     private val black = R.drawable.button_black
     private val red = R.drawable.button_red
 
-
-    val routeR = mapOf(0 to "p0", 1 to "p1", 2 to "p2", 3 to "p3")
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         repository = UrGameRepository(requireContext())
@@ -61,18 +58,10 @@ class UrGameFragment : Fragment() {
         }
     }
 
-    private fun movePiece(piece: Piece, boardPlace: Int) {
-
-    }
-
     private fun initGame() {
         clearBoard()
         fillPlayers()
     }
-
-//    private fun givePieces() {
-//        repository.insertPiece()
-//    }
 
 
     private fun RollDice(id: Int) {
@@ -82,27 +71,29 @@ class UrGameFragment : Fragment() {
             var player = repository.getPlayerInfo(id)
             player.dice = randomnumber
             repository.updatePlayer(player)
-            CalculateMove(id)
+            calculateMove(id)
         }
     }
 
-//    private checkOnBench(){
-//        //
-//    }
+    private fun selectPiece(){
+        
+    }
 
-    private fun CalculateMove(id: Int) {
+    private fun calculateMove(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             val player = repository.getPlayerInfo(id)
             var dice = player.dice
-            var score = player.score
+            var validMove: Boolean
+            var piecesBenched = player.piecesonbench
+
             withContext(Dispatchers.Main) {
-                if (player.piecesonbench!! == 0) {
+                if (piecesBenched!! == 0) {
                     if (id == 1) {
                         r0.setImageResource(0)
                     } else if (id == 2) {
                         z0.setImageResource(0)
                     }
-                } else if (player.piecesonbench!! > 0) {
+                } else if (piecesBenched > 0) {
                     if (id == 1) {
                         r0.setImageResource(red)
                     } else if (id == 2) {
@@ -110,26 +101,25 @@ class UrGameFragment : Fragment() {
                     }
                 }
 
+                println("dice$dice")
+                val oldLocation = player.piece1
+                println("oldLocation$oldLocation")
+                var newLocation: Int = (oldLocation + dice)
+                println("newLocation$newLocation")
 
-                if (id == 1) {
-                    println("dice$dice")
-                    val oldLocation = player.piece1
-                    println("oldLocation$oldLocation")
-                    var newLocation: Int = (oldLocation + dice)
+                if (newLocation > 15) {
+                    newLocation = oldLocation
                     println("newLocation$newLocation")
+                    validMove = false
+                } else {
+                    validMove = true
+                }
+                player.piece1 = newLocation
+                repository.updatePlayer(player)
 
-                    if (newLocation > 15) {
-                        newLocation = oldLocation
-                        println("newLocation$newLocation")
-                    }
-
-                        player.piece1 = newLocation
-                        repository.updatePlayer(player)
-
-
-                    println("XD"+ player.piece1)
-                    if (player.piece1 in 1..15) {
-
+                println("XD" + player.piece1)
+                if (validMove) {
+                    if (id == 1) {
                         when (player.piece1) {
                             0 -> r0.setImageResource(red)
                             1 -> r1.setImageResource(red)
@@ -148,7 +138,8 @@ class UrGameFragment : Fragment() {
                             14 -> r14.setImageResource(red)
                             15 -> earnPoint(id)
                         }
-                        if (oldLocation != 0 && dice != 0) {
+
+                        if (oldLocation != 0 && dice != 0 && validMove) {
                             when (oldLocation) {
                                 1 -> r1.setImageResource(0)
                                 2 -> r2.setImageResource(0)
@@ -168,17 +159,66 @@ class UrGameFragment : Fragment() {
                             }
                         }
                     }
+
+                    if (id == 2) {
+                        when (player.piece1) {
+                            0 -> z0.setImageResource(black)
+                            1 -> z1.setImageResource(black)
+                            2 -> z2.setImageResource(black)
+                            3 -> z3.setImageResource(black)
+                            4 -> z4.setImageResource(black)
+                            5 -> p5.setImageResource(black)
+                            6 -> p6.setImageResource(black)
+                            7 -> p7.setImageResource(black)
+                            8 -> p8.setImageResource(black)
+                            9 -> p9.setImageResource(black)
+                            10 -> p10.setImageResource(black)
+                            11 -> p11.setImageResource(black)
+                            12 -> p12.setImageResource(black)
+                            13 -> z13.setImageResource(black)
+                            14 -> z14.setImageResource(black)
+                            15 -> earnPoint(id)
+                        }
+                        if (oldLocation != 0 && dice != 0 && validMove) {
+                            when (oldLocation) {
+                                1 -> z1.setImageResource(0)
+                                2 -> z2.setImageResource(0)
+                                3 -> z3.setImageResource(0)
+                                4 -> z4.setImageResource(0)
+                                5 -> p5.setImageResource(0)
+                                6 -> p6.setImageResource(0)
+                                7 -> p7.setImageResource(0)
+                                8 -> p8.setImageResource(0)
+                                9 -> p9.setImageResource(0)
+                                10 -> p10.setImageResource(0)
+                                11 -> p11.setImageResource(0)
+                                12 -> p12.setImageResource(0)
+                                13 -> z13.setImageResource(0)
+                                14 -> z14.setImageResource(0)
+                                15 -> z15.setImageResource(0)
+                            }
+                        }
+                    }
+
+                    if (oldLocation == 0 && newLocation != 0 && validMove) {
+                        piecesBenched -= 1
+                        player.piecesonbench = piecesBenched
+                        repository.updatePlayer(player)
+                    }
+
                 }
+
             }
         }
     }
 
-    private fun earnPoint(id: Int){
+    private fun earnPoint(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            var player = repository.getPlayerInfo(id)
+            val player = repository.getPlayerInfo(id)
             var score = player.score
             score = score?.plus(1)
             println(score)
+            player.score = score
             repository.updatePlayer(player)
 //            repository.updatePlayer(Player(player.name, score, player.piecesonbench, player.dice, player.piece1,player.piece2, player.piece3,player.piece4,player.piece5,player.piece6,player.piece6,player.piece7))
         }
@@ -189,7 +229,7 @@ class UrGameFragment : Fragment() {
         z13.setImageResource(0)
         z14.setImageResource(0)
         z15.setImageResource(0)
-//        z0.setImageResource(0)
+        z0.setImageResource(0)
         z1.setImageResource(0)
         z2.setImageResource(0)
         z2.setImageResource(0)
@@ -208,7 +248,7 @@ class UrGameFragment : Fragment() {
         r13.setImageResource(0)
         r14.setImageResource(0)
         r15.setImageResource(0)
-//        r0.setImageResource(0)
+        r0.setImageResource(0)
         r1.setImageResource(0)
         r2.setImageResource(0)
         r3.setImageResource(0)
