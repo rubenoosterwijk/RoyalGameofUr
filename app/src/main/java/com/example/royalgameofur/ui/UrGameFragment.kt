@@ -75,8 +75,12 @@ class UrGameFragment : Fragment() {
         }
     }
 
-    private fun selectPiece(){
-        
+    private fun selectPiece() {
+
+    }
+
+    object Piece {
+        var piecenr: Int? = null
     }
 
     private fun calculateMove(id: Int) {
@@ -85,6 +89,10 @@ class UrGameFragment : Fragment() {
             var dice = player.dice
             var validMove: Boolean
             var piecesBenched = player.piecesonbench
+            var score = player.score
+            var piece: Int
+
+
 
             withContext(Dispatchers.Main) {
                 if (piecesBenched!! == 0) {
@@ -101,26 +109,158 @@ class UrGameFragment : Fragment() {
                     }
                 }
 
+                println(Piece.piecenr)
+
+                when (score) {
+                    0 -> piece = 1
+                    1 -> Piece.piecenr = player.piece2
+                    2 -> Piece.piecenr = player.piece3
+                    3 -> Piece.piecenr = player.piece4
+                    4 -> Piece.piecenr = player.piece5
+                    5 -> Piece.piecenr = player.piece6
+                    6 -> Piece.piecenr = player.piece7
+                    7 -> winner()
+                }
+                println("piecenr")
+                println(Piece.piecenr)
+
                 println("dice$dice")
-                val oldLocation = player.piece1
+                val oldLocation = Piece.piecenr
                 println("oldLocation$oldLocation")
-                var newLocation: Int = (oldLocation + dice)
+                var newLocation: Int? = (Piece.piecenr?.plus(dice))
                 println("newLocation$newLocation")
 
-                if (newLocation > 15) {
+                if (newLocation!! > 15) {
                     newLocation = oldLocation
                     println("newLocation$newLocation")
                     validMove = false
                 } else {
                     validMove = true
                 }
-                player.piece1 = newLocation
-                repository.updatePlayer(player)
 
-                println("XD" + player.piece1)
+                CoroutineScope(Dispatchers.IO).launch {
+
+                    when (score) {
+                        0 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                newLocation!!,
+                                player.piece2,
+                                player.piece3,
+                                player.piece4,
+                                player.piece5,
+                                player.piece6,
+                                player.piece7
+                            )
+                        )
+                        1 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                player.piece1,
+                                newLocation!!,
+                                player.piece3,
+                                player.piece4,
+                                player.piece5,
+                                player.piece6,
+                                player.piece7
+                            )
+                        )
+                        2 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                player.piece1,
+                                player.piece2,
+                                newLocation!!,
+                                player.piece4,
+                                player.piece5,
+                                player.piece6,
+                                player.piece7
+                            )
+                        )
+                        3 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                player.piece1,
+                                player.piece2,
+                                player.piece3,
+                                newLocation!!,
+                                player.piece5,
+                                player.piece6,
+                                player.piece7
+                            )
+                        )
+                        4 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                player.piece1,
+                                player.piece2,
+                                player.piece3,
+                                player.piece4,
+                                newLocation!!,
+                                player.piece6,
+                                player.piece7
+                            )
+                        )
+                        5 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                player.piece1,
+                                player.piece2,
+                                player.piece3,
+                                player.piece4,
+                                player.piece5,
+                                newLocation!!,
+                                player.piece7
+                            )
+                        )
+                        6 -> repository.updatePlayer(
+                            Player(
+                                player.name,
+                                player.score,
+                                player.piecesonbench,
+                                player.dice,
+                                player.movenumber,
+                                player.piece1,
+                                player.piece2,
+                                player.piece3,
+                                player.piece4,
+                                player.piece5,
+                                player.piece6,
+                                newLocation!!
+                            )
+                        )
+                        7 -> winner()
+                    }
+                }
+
+                println("XD" + newLocation)
                 if (validMove) {
                     if (id == 1) {
-                        when (player.piece1) {
+                        when (newLocation) {
                             0 -> r0.setImageResource(red)
                             1 -> r1.setImageResource(red)
                             2 -> r2.setImageResource(red)
@@ -161,7 +301,7 @@ class UrGameFragment : Fragment() {
                     }
 
                     if (id == 2) {
-                        when (player.piece1) {
+                        when (newLocation) {
                             0 -> z0.setImageResource(black)
                             1 -> z1.setImageResource(black)
                             2 -> z2.setImageResource(black)
@@ -207,9 +347,15 @@ class UrGameFragment : Fragment() {
                     }
 
                 }
-
             }
+            val a = repository.getPlayerInfo(id)
+            var b = a.piece1
+            println(b)
         }
+    }
+
+    private fun winner() {
+        TODO("Not yet implemented")
     }
 
     private fun earnPoint(id: Int) {
