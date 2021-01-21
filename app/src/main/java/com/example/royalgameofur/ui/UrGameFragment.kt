@@ -22,12 +22,19 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class UrGameFragment : Fragment() {
+    companion object {
+        var piece : Int? = null
+    }
 
     private val viewModel: UrGameViewModel by activityViewModels()
     private lateinit var repository: UrGameRepository
 
     private val black = R.drawable.button_black
     private val red = R.drawable.button_red
+
+
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,8 +82,11 @@ class UrGameFragment : Fragment() {
         }
     }
 
-    private fun selectPiece(){
-        
+    private fun selectPiece(id: Int, score: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            var player = repository.getPlayerInfo(id)
+
+        }
     }
 
     private fun calculateMove(id: Int) {
@@ -85,6 +95,8 @@ class UrGameFragment : Fragment() {
             var dice = player.dice
             var validMove: Boolean
             var piecesBenched = player.piecesonbench
+            var score = player.score
+
 
             withContext(Dispatchers.Main) {
                 if (piecesBenched!! == 0) {
@@ -101,26 +113,75 @@ class UrGameFragment : Fragment() {
                     }
                 }
 
+//                if (score == 0) {
+//                    var piece = player.piece1
+//                }
+//                if (score == 1) {
+//                    var piece = player.piece2
+//                }
+//                if (score == 2) {
+//                    var piece = player.piece3
+//                }
+//                if (score == 3) {
+//                    var piece = player.piece4
+//                }
+//                if (score == 4) {
+//                    var piece = player.piece5
+//                }
+//                if (score == 5) {
+//                    var piece = player.piece6
+//                }
+//                if (score== 6) {
+//                    var piece = player.piece7
+//                }
+//                if (score== 7) {
+//                    winner()
+//                }
+
+                when (score) {
+                    0 -> piece = player.piece1
+                    1 -> piece = player.piece2
+                    2 -> piece = player.piece3
+                    3 -> piece = player.piece4
+                    4 -> piece = player.piece5
+                    5 -> piece = player.piece6
+                    6 -> piece = player.piece7
+                    7 -> winner()
+                }
+
                 println("dice$dice")
-                val oldLocation = player.piece1
+
+                val oldLocation = piece
                 println("oldLocation$oldLocation")
-                var newLocation: Int = (oldLocation + dice)
+                var newLocation: Int? = (oldLocation?.plus(dice))
                 println("newLocation$newLocation")
 
-                if (newLocation > 15) {
+                if (newLocation!! > 15) {
                     newLocation = oldLocation
                     println("newLocation$newLocation")
                     validMove = false
                 } else {
                     validMove = true
                 }
-                player.piece1 = newLocation
+
+                if (newLocation != null) {
+                    piece = newLocation
+                }
+                when(piece){
+                    0->player.piece1 = newLocation!!
+                    1->player.piece2 = newLocation!!
+                    2->player.piece3 = newLocation!!
+                    3->player.piece4 = newLocation!!
+                    4->player.piece5 = newLocation!!
+                    5->player.piece6 = newLocation!!
+                    6->player.piece7 = newLocation!!
+                }
                 repository.updatePlayer(player)
 
-                println("XD" + player.piece1)
+                println("XD" + piece + id)
                 if (validMove) {
                     if (id == 1) {
-                        when (player.piece1) {
+                        when (piece) {
                             0 -> r0.setImageResource(red)
                             1 -> r1.setImageResource(red)
                             2 -> r2.setImageResource(red)
@@ -161,7 +222,7 @@ class UrGameFragment : Fragment() {
                     }
 
                     if (id == 2) {
-                        when (player.piece1) {
+                        when (piece) {
                             0 -> z0.setImageResource(black)
                             1 -> z1.setImageResource(black)
                             2 -> z2.setImageResource(black)
@@ -205,11 +266,13 @@ class UrGameFragment : Fragment() {
                         player.piecesonbench = piecesBenched
                         repository.updatePlayer(player)
                     }
-
                 }
-
             }
         }
+    }
+
+    private fun winner() {
+        TODO("Not yet implemented")
     }
 
     private fun earnPoint(id: Int) {
