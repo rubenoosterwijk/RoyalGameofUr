@@ -45,6 +45,9 @@ class Player(
     @ColumnInfo(name = "piece7")
     var piece7: Int,
 
+    @ColumnInfo(name = "winner")
+    var winner: Boolean,
+
 
     @PrimaryKey()
     @ColumnInfo(name = "id")

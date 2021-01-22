@@ -21,6 +21,9 @@ interface UrGameDao {
     @Query("SELECT * FROM PlayerTable WHERE id =:id")
     fun getPlayerInfo(id: Int): Player
 
+    @Query("SELECT * FROM PlayerTable WHERE winner =:winner")
+    fun getPlayerWinner(winner: Boolean): Player
+
     @Query("DELETE FROM playertable")
     suspend fun deletePlayers()
 

@@ -8,7 +8,7 @@ import com.example.royalgameofur.model.Board
 import com.example.royalgameofur.model.Piece
 import com.example.royalgameofur.model.Player
 
-@Database(entities = [Piece::class, Player::class, Board::class], version = 6, exportSchema = false)
+@Database(entities = [Piece::class, Player::class, Board::class], version = 7, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
 

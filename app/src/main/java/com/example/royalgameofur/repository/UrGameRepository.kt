@@ -2,7 +2,6 @@ package com.example.royalgameofur.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.royalgameofur.database.GameDatabase
 import com.example.royalgameofur.dao.UrGameDao
 import com.example.royalgameofur.model.Board
@@ -26,8 +25,12 @@ class UrGameRepository(context: Context) {
         return UrGameDao?.getPlayer(id)
     }
 
-    suspend fun getPlayerInfo(id: Int): Player {
+     fun getPlayerInfo(id: Int): Player {
         return UrGameDao?.getPlayerInfo(id)
+    }
+
+     fun getPlayerWinner(winner: Boolean): Player {
+        return UrGameDao?.getPlayerWinner(winner)
     }
 
     suspend fun deletePlayers() {
