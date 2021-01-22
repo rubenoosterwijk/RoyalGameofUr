@@ -18,5 +18,14 @@
         android:id="@+id/urGameFragment"
         android:name="com.example.royalgameofur.ui.UrGameFragment"
         android:label="fragment_gameboard"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board" >
+        <action
+            android:id="@+id/action_urGameFragment_to_winnerFragment"
+            app:destination="@id/winnerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/winnerFragment"
+        android:name="com.example.royalgameofur.ui.WinnerFragment"
+        android:label="fragment_winner"
+        tools:layout="@layout/fragment_winner" />
 </navigation>

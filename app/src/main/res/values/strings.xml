@@ -23,4 +23,8 @@
     <string name="thrown_score">Dice:</string>
     <string name="roll">Roll</string>
     <string name="play">Play</string>
+    <string name="in">In</string>
+    <string name="moves">moves!</string>
+    <string name="_5">5</string>
+    <string name="name">Name</string>
 </resources>
